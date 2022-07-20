@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+
+  <!-- bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+  <!-- Personal CSS -->
+  <link rel="stylesheet" href="../static/css/styles.css">
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;900&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/b97891673c.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+  <section id="title">
+    <div class="container-fluid">
+
+
+
+      <!-- Nav Bar -->
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+          <a class="navbar-brand" href="">KCFB</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+                <ul class="navbar-nav ms-auto">
+                      <li class="nav-item">
+                        <div class="dropdown">
+                          <button class="dropbtn1">League</button>
+                          <div class="dropdown-content">
+                            <a class="nav-link" href="">League 1</a>
+                            <a class="nav-link" href="">League 2</a>
+                            <a class="nav-link" href="">League 3</a>
+                          </div>
+                        </div>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Homepage</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="">Draft</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+      </div>
+    </section>
+
+      <!-- Games -->
+      <section id="games">
+        <div class="row container-fluid">
+          <div class="col-lg-6 live-games">
+            <table class="table table-striped table-hover">
+              <thead class="first-item">
+                <tr>
+                  <th colspan="4" scope="colgroup">Live Games</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">TBD</th>
+                  <td>API doesn't</td>
+                  <td>allow for</td>
+                  <td>live games</td>
+                </tr>
+                <tr>
+                  <th scope="row">Team 1</th>
+                  <td>Score 1</td>
+                  <td>Team 2</td>
+                  <td>Score 2</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6 upcoming-games">
+            <table class="table table-striped table-hover">
+              <thead class="first-item">
+                <tr>
+                  <th colspan="4" scope="colgroup">Upcoming Games</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for team in upcoming_team_games: %}
+                  <tr>
+                    <th scope="row">{{ team }}
+                      {% for person in player_teams_final: %}
+                        {% if team in player_teams_final[person]: %}
+                          <span class="font-slightly-heavy">({{ person }})</span>
+                        {% endif %}
+                      {% endfor %}</th>
+                    <td>vs.</td>
+                    <td>{{ upcoming_team_games[team][0] }}
+                          {% for person in player_teams_final: %}
+                            {% if upcoming_team_games[team][0] in player_teams_final[person]: %}
+                              <span class="font-slightly-heavy">({{ person }})</span>
+                            {% endif %}
+                          {% endfor %}</td>
+                    <td>{{ upcoming_team_games[team][1] }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Standings -->
+      <section id="standings">
+        <div class="dropdown dropdown-align">
+          <button class="dropbtn2">Week {{ display_num }} <i class="fa-solid fa-angle-down"></i></button>
+          <div class="dropdown-content">
+            {% for counter in range(1, week_num + 1): %}
+              <a href="/Dashboard/week{{ counter }}">Week {{ counter }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="row container-fluid">
+          <div class="col-lg-6 league-standings">
+            <table class="table table-striped table-hover">
+              <thead class="first-item">
+                <tr>
+                  <th scope="col" class="font-slightly-heavy">Rank</th>
+                  <th scope="col">Player</th>
+                  <th scope="col">Points</th>
+                  <th scope="col"><span class="font-slightly-heavy">Previous Rank</span>(Pts.)</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for person in score_dict: %}
+                  <tr>
+                    <th scope="row" class="font-slightly-heavy">{{ places[person] }}</th>
+                    <td>{{ person }}</td>
+                    <td>{{ score_dict[person] }}</td>
+                    <td><span class="font-slightly-heavy">{{ previous_places[person] }}</span>({{ previous_score_dict[person] }})</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="col-lg-6 team-standings">
+            <table class="table table-striped table-hover">
+              <thead class="first-item">
+                <tr>
+                  <th scope="col font">Rank</th>
+                  <th scope="col font">Team</th>
+                  <th scope="col font">Conference</th>
+                  <th scope="col font">Wins</th>
+                  <th scope="col font">Last Week Result</th>
+                  <th scope="col font">Player</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for team in team_data_dict: %}
+                  <tr>
+                    <td scope="row">{{ team_data_dict[team]["rank"] }}</td>
+                    <td>{{ team }}</td>
+                    <td>Conference</td>
+                    <td>{{ team_data_dict[team]["points"] }}</td>
+                    <td>{{ team_data_dict[team]["last_result"] }}</td>
+                    <td>{% for person in player_teams_final: %}
+                          {% if team in player_teams_final[person]: %}
+                            {{ person }}
+                          {% endif %}
+                        {% endfor %}
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+        </div>
+      </section>
+
+
+</body>
+
+</html>
