@@ -140,7 +140,6 @@ def save_data():
 	week = 6
 	for team in new_teams:
 		time.sleep(0.2)
-		print(f"The team was: {team}")
 		week_data = get_game_data(year, week, team)
 		i = 0
 		score = 0
@@ -183,12 +182,10 @@ def save_data():
 					results = []
 				with open(f"Team_Results/{team}.txt", 'a+', encoding='ISO-8859-1') as file:
 					if len(results) == 0:
-						print(f"entered1: L {winner}")
 						file.write(f"L {winner.replace('%26', '&')},")
 					else:
 						most_recent_result = results[-2]
 						if most_recent_result != f"L {winner.replace('%26', '&')}":
-							print(f"entered2: L {winner}")
 							file.write(f"L {winner.replace('%26', '&')},")
 
 			i += 1
@@ -296,8 +293,6 @@ def display():
 	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
-	print(upcoming_team_games)
-	print(player_teams_final)
 
 	"""
 	Variables used: week_num is the week number to be used by the html to calculate the standings.
@@ -416,8 +411,6 @@ def get_standings(number_from_website):
 	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
-	print(upcoming_team_games)
-	print(player_teams_final)
 
 	"""
 	Variables used: week_num is the week number to be used by the html to calculate the standings.
