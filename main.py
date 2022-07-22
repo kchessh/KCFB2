@@ -206,7 +206,7 @@ This route will be the main link to see a person's dashboard. It will automatica
 week. It will have a link to display the weeks for someone to choose so they can see the standings from any given week
 """
 
-@app.route("/Dashboard")
+@app.route("/")
 def display():
 	data = pandas.read_csv("Team_points.csv")
 
