@@ -58,7 +58,7 @@ is used to determine the total for every person in the league
 """
 
 def determine_scores(points_dict):
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv("League2.csv", encoding='utf-8')
 	player_teams = data.to_dict()
 	score_dict = {}
 	for person in player_teams:
@@ -134,7 +134,7 @@ This function also saves the previous results for every team to a txt file. Each
 """
 
 def save_data():
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv("League2.csv", encoding='utf-8')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
 	week = 6
@@ -208,7 +208,7 @@ week. It will have a link to display the weeks for someone to choose so they can
 
 @app.route("/")
 def display():
-	data = pandas.read_csv("Team_points.csv", encoding='latin-1')
+	data = pandas.read_csv("Team_points.csv", encoding='utf-8')
 
 	with open("Teams.txt") as file:
 		text = file.read()
@@ -289,11 +289,11 @@ def display():
 			previous_game = games_list[-2]
 			team_data_dict[team.replace("%26", "&")]["last_result"] = previous_game
 
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv("League2.csv", encoding='utf-8')
 	player_teams_initial = data.to_dict()
 	player_teams_final = convert_dict_to_simple_dict(player_teams_initial)
 
-	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
+	data = pandas.read_csv("This_weeks_games.csv", encoding='utf-8')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
 	print(upcoming_team_games)
@@ -321,7 +321,7 @@ input to get different standings
 
 @app.route("/Dashboard/week<number_from_website>")
 def get_standings(number_from_website):
-	team_data = pandas.read_csv("Team_points.csv", encoding='latin-1')
+	team_data = pandas.read_csv("Team_points.csv", encoding='utf-8')
 
 	with open("Teams.txt") as file:
 		text = file.read()
@@ -402,7 +402,7 @@ def get_standings(number_from_website):
 			previous_game = games_list[-2]
 			team_data_dict[team.replace("%26", "&")]["last_result"] = previous_game
 
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv("League2.csv", encoding='utf-8')
 	player_teams_initial = data.to_dict()
 	del player_teams_initial["Unnamed: 0"]
 	player_teams_final = {}
@@ -413,7 +413,7 @@ def get_standings(number_from_website):
 			list.append(team)
 		player_teams_final[person] = list
 
-	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
+	data = pandas.read_csv("This_weeks_games.csv", encoding='utf-8')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
 	print(upcoming_team_games)
