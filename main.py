@@ -117,7 +117,7 @@ csv with a list of 0s and 1s (1s representing a win, 0s representing a loss or n
 """
 
 new_teams = []
-with open("Teams.txt", encoding='utf8') as file:
+with open("Teams.txt", encoding='utf-8') as file:
 	text = file.read()
 	teams = text.split(",")
 	for team in teams:
@@ -162,12 +162,12 @@ def save_data():
 			if winner == team.replace("%26", "&"):
 				score += 1
 				try:
-					with open(f"Team_Results/{team}.txt", 'r', encoding='utf8') as file:
+					with open(f"Team_Results/{team}.txt", 'r', encoding='utf-8') as file:
 						text = file.read()
 						results = text.split(",")
 				except FileNotFoundError:
 					results = []
-				with open(f"Team_Results/{team}.txt", 'a+', encoding='utf8') as file:
+				with open(f"Team_Results/{team}.txt", 'a+', encoding='utf-8') as file:
 					if len(results) == 0:
 						file.write(f"W {loser.replace('%26', '&')},")
 					else:
@@ -176,12 +176,12 @@ def save_data():
 							file.write(f"W {loser.replace('%26', '&')},")
 			else:
 				try:
-					with open(f"Team_Results/{team}.txt", 'r', encoding='utf8') as file:
+					with open(f"Team_Results/{team}.txt", 'r', encoding='utf-8') as file:
 						text = file.read()
 						results = text.split(",")
 				except FileNotFoundError:
 					results = []
-				with open(f"Team_Results/{team}.txt", 'a+', encoding='utf8') as file:
+				with open(f"Team_Results/{team}.txt", 'a+', encoding='utf-8') as file:
 					if len(results) == 0:
 						print(f"entered1: L {winner}")
 						file.write(f"L {winner.replace('%26', '&')},")
@@ -210,7 +210,7 @@ week. It will have a link to display the weeks for someone to choose so they can
 def display():
 	data = pandas.read_csv("Team_points.csv", encoding='latin-1')
 
-	with open("Teams.txt", encoding='utf8') as file:
+	with open("Teams.txt", encoding='utf-8') as file:
 		text = file.read()
 		teams = text.split(",")
 
@@ -283,7 +283,7 @@ def display():
 
 	for team in teams:
 		team = team.replace("&", "%26")
-		with open(f"Team_Results/{team}.txt", "r", encoding='utf8') as file:
+		with open(f"Team_Results/{team}.txt", "r", encoding='utf-8') as file:
 			text = file.read()
 			games_list = text.split(',')
 			previous_game = games_list[-2]
@@ -323,7 +323,7 @@ input to get different standings
 def get_standings(number_from_website):
 	team_data = pandas.read_csv("Team_points.csv", encoding='latin-1')
 
-	with open("Teams.txt", encoding='utf8') as file:
+	with open("Teams.txt", encoding='utf-8') as file:
 		text = file.read()
 		teams = text.split(",")
 
@@ -396,7 +396,7 @@ def get_standings(number_from_website):
 
 	for team in teams:
 		team = team.replace("&", "%26")
-		with open(f"Team_Results/{team}.txt", "r", encoding='utf8') as file:
+		with open(f"Team_Results/{team}.txt", "r", encoding='utf-8') as file:
 			text = file.read()
 			games_list = text.split(',')
 			previous_game = games_list[-2]
