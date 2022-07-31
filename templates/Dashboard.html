@@ -46,9 +46,8 @@
                         <div class="dropdown">
                           <button class="dropbtn1">League</button>
                           <div class="dropdown-content">
-                            <a class="nav-link" href="">League 1</a>
-                            <a class="nav-link" href="">League 2</a>
-                            <a class="nav-link" href="">League 3</a>
+                            <a class="nav-link" href="/Dashboard/league=1">League 1</a>
+                            <a class="nav-link" href="/Dashboard/league=2">League 2</a>
                           </div>
                         </div>
                       </li>
@@ -130,11 +129,11 @@
       <section id="standings">
         <div class="dropdown dropdown-align">
           <button class="dropbtn2">Week {{ display_num }} <i class="fa-solid fa-angle-down"></i></button>
-          <div class="dropdown-content">
-            {% for counter in range(1, week_num + 1): %}
-              <a href="/Dashboard/week{{ counter }}">Week {{ counter }}</a>
-            {% endfor %}
-          </div>
+            <div class="dropdown-content">
+              {% for counter in range(1, week_num + 1): %}
+                <a href="/Dashboard/league={{ league_number }}&week={{ counter }}">Week {{ counter }}</a>
+              {% endfor %}
+            </div>
         </div>
         <div class="row container-fluid">
           <div class="col-lg-6 league-standings">
@@ -198,3 +197,5 @@
 </body>
 
 </html>
+
+<!-- <button class="dropbtn2">Week {{ display_num }} <i class="fa-solid fa-angle-down"></i></button> -->

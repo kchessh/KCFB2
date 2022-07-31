@@ -7,6 +7,7 @@ import pandas
 import time
 import datetime
 from collections import OrderedDict
+import os, os.path
 
 app = Flask(__name__)
 
@@ -18,6 +19,8 @@ get_data = False
 ""
 old_scores = False
 new_scores = True
+
+get_upcoming_games = False
 
 """
 This function is used to determine which week number it is in the season. It will look through the cutoffs (dates) and
@@ -57,8 +60,8 @@ dictionary passed in that has the win total (or points) for every respective sch
 is used to determine the total for every person in the league
 """
 
-def determine_scores(points_dict):
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+def determine_scores(points_dict, league_number):
+	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	player_teams = data.to_dict()
 	score_dict = {}
 	for person in player_teams:
@@ -126,6 +129,83 @@ with open("Teams.txt", encoding='ISO-8859-1') as file:
 
 teams_dict = {team: [] for team in teams}
 
+def upcoming_games_master():
+	test = True
+	games = {}
+	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
+	if test:
+		week = 1
+		day_of_week = 1
+	else:
+		var = datetime.datetime.now()
+		day_of_week = datetime.date.weekday(var)
+		week = determine_week_number() + 1
+
+	if day_of_week == 1:
+		for team in teams_dict:
+			game = get_game_data(year, week, team.replace("&", "%26"))
+			i = 0
+
+			try:
+				if game[i]["home_team"] == team:
+					print(game[i]["home_team"])
+					start_date = game[i]["start_date"].split("T")[0].split("-")
+					start_day_as_input = [int(item) for item in start_date]
+					date = datetime.date(start_day_as_input[0], start_day_as_input[1], start_day_as_input[2])
+					start_day_as_output = datetime.date.weekday(date)
+					start_day = weekDays[start_day_as_output]
+					games[team] = {"opponent": game[i]["away_team"], "start_day": start_day}
+				else:
+					home_team = game[i]["home_team"]
+					start_date = game[i]["start_date"].split("T")[0].split("-")
+					start_day_as_input = [int(item) for item in start_date]
+					date = datetime.date(start_day_as_input[0], start_day_as_input[1], start_day_as_input[2])
+					start_day_as_output = datetime.date.weekday(date)
+					start_day = weekDays[start_day_as_output]
+					games[home_team] = {"opponent": team, "start_day": start_day}
+			except KeyError:
+				pass
+			i += 1
+
+		write_data = pandas.DataFrame(games, index=["opponent", "start_day", "sort_points"])
+		write_data.to_csv(f"This_weeks_games.csv")
+
+		number_of_leagues = len([name for name in os.listdir('Leagues')])
+		league = 1
+
+		while league <= number_of_leagues:
+			data = pandas.read_csv(f"Leagues/League{league}.csv", encoding='latin-1')
+			league_games = games
+			players_teams_initial = data.to_dict()
+			players_teams = convert_dict_to_simple_dict(players_teams_initial)
+			print(players_teams)
+			print(games)
+			for team in league_games:
+				print(team)
+				print(f"opponent: {league_games[team]['opponent']}")
+				sort_points = 0
+				for player in players_teams:
+					if team in players_teams[player]:
+						print("sort points up by 1")
+						sort_points += 1
+					if league_games[team]["opponent"] in players_teams[player]:
+						print("sort points up by 1")
+						sort_points += 1
+					if sort_points == 2:
+						break
+				league_games[team]["sort_points"] = sort_points
+
+			league_games = dict(sorted(league_games.items(), key=lambda kv: kv[1]["sort_points"], reverse=True))
+			write_data = pandas.DataFrame(league_games, index=["opponent", "start_day", "sort_points"])
+			write_data.to_csv(f"This_Weeks_Games/League{league}.csv")
+			league += 1
+
+if get_upcoming_games:
+	upcoming_games_master()
+data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
+team_games = data.to_dict()
+final_team_games = convert_dict_to_simple_dict(team_games)
+
 """
 This function saves a csv with a dictionary where the key is the team and the value is a list of 0s and 1s to represent
 that team's score. It's done this way so that the user can select what week they want to see the scores for. This csv
@@ -133,8 +213,8 @@ will be used in the future to allow every league to use a master spreadsheet whe
 This function also saves the previous results for every team to a txt file. Each team has their own txt file
 """
 
-def save_data():
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+def save_data(league_number):
+	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
 	week = 6
@@ -196,15 +276,15 @@ def save_data():
 	write_data.to_csv(f"Team_points.csv")
 
 if get_data:
-	save_data()
+	save_data(league_number=1)
 
 """
 This route will be the main link to see a person's dashboard. It will automatically show the standings for the current
 week. It will have a link to display the weeks for someone to choose so they can see the standings from any given week
 """
 
-@app.route("/")
-def display():
+@app.route("/Dashboard/league=<league_number>")
+def display(league_number):
 	data = pandas.read_csv("Team_points.csv", encoding='latin-1')
 
 	with open("Teams.txt", encoding='ISO-8859-1') as file:
@@ -253,8 +333,8 @@ def display():
 	for the current weak for the teams but not the people. Then a new dictionary is made that has multiple dictionaries
 	for each team (rank, points, last result, player, and conference)
 	"""
-	current_week_score_dict = dict(sorted(determine_scores(current_week_points_dict).items(), key=lambda kv: kv[1], reverse=True))
-	previous_week_score_dict = dict(sorted(determine_scores(previous_week_points_dict).items(), key=lambda kv: kv[1], reverse=True))
+	current_week_score_dict = dict(sorted(determine_scores(points_dict=current_week_points_dict, league_number=league_number).items(), key=lambda kv: kv[1], reverse=True))
+	previous_week_score_dict = dict(sorted(determine_scores(points_dict=previous_week_points_dict, league_number=league_number).items(), key=lambda kv: kv[1], reverse=True))
 	team_score_dict_sorted = dict(sorted(team_score_dict.items(), key=lambda kv: kv[1], reverse=True))
 	team_data_dict = {team: {"points": ""} for team in team_score_dict_sorted}
 
@@ -286,11 +366,11 @@ def display():
 			previous_game = games_list[-2]
 			team_data_dict[team.replace("%26", "&")]["last_result"] = previous_game
 
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	player_teams_initial = data.to_dict()
 	player_teams_final = convert_dict_to_simple_dict(player_teams_initial)
 
-	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
+	data = pandas.read_csv(f"This_Weeks_Games/League{league_number}.csv", encoding='latin-1')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
 
@@ -306,7 +386,7 @@ def display():
 	"""
 	return render_template("Dashboard.html", week_num=week, display_num=week, score_dict=current_week_score_dict, places=places,
 	previous_score_dict=previous_week_score_dict, previous_places=previous_places, team_data_dict=team_data_dict,
-	player_teams_final=player_teams_final, upcoming_team_games=upcoming_team_games)
+	player_teams_final=player_teams_final, upcoming_team_games=upcoming_team_games, league_number=league_number)
 
 """
 This route shows the dashboard from any given week that the person wants to see. It's the exact same thing as the main
@@ -314,8 +394,8 @@ dashboard link except for that it receives the number of the link the person cli
 input to get different standings
 """
 
-@app.route("/Dashboard/week<number_from_website>")
-def get_standings(number_from_website):
+@app.route("/Dashboard/league=<league_number>&week=<number_from_website>")
+def get_standings(league_number, number_from_website):
 	team_data = pandas.read_csv("Team_points.csv", encoding='latin-1')
 
 	with open("Teams.txt", encoding='ISO-8859-1') as file:
@@ -364,8 +444,8 @@ def get_standings(number_from_website):
 	for the current weak for the teams but not the people. Then a new dictionary is made that has multiple dictionaries
 	for each team (rank, points, last result, player, and conference)
 	"""
-	current_week_score_dict = dict(sorted(determine_scores(current_week_points_dict).items(), key=lambda kv:kv[1], reverse=True))
-	previous_week_score_dict = dict(sorted(determine_scores(previous_week_points_dict).items(), key=lambda kv: kv[1], reverse=True))
+	current_week_score_dict = dict(sorted(determine_scores(points_dict=current_week_points_dict, league_number=league_number).items(), key=lambda kv:kv[1], reverse=True))
+	previous_week_score_dict = dict(sorted(determine_scores(points_dict=previous_week_points_dict, league_number=league_number).items(), key=lambda kv: kv[1], reverse=True))
 	team_score_dict_sorted = dict(sorted(team_score_dict.items(), key=lambda kv: kv[1], reverse=True))
 	team_data_dict = {team: {"points": ""} for team in team_score_dict_sorted}
 
@@ -397,7 +477,7 @@ def get_standings(number_from_website):
 			previous_game = games_list[-2]
 			team_data_dict[team.replace("%26", "&")]["last_result"] = previous_game
 
-	data = pandas.read_csv("League2.csv", encoding='latin-1')
+	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	player_teams_initial = data.to_dict()
 	del player_teams_initial["Unnamed: 0"]
 	player_teams_final = {}
@@ -408,7 +488,7 @@ def get_standings(number_from_website):
 			list.append(team)
 		player_teams_final[person] = list
 
-	data = pandas.read_csv("This_weeks_games.csv", encoding='latin-1')
+	data = pandas.read_csv(f"This_Weeks_Games/League{league_number}.csv", encoding='latin-1')
 	team_games = data.to_dict()
 	upcoming_team_games = convert_dict_to_simple_dict(team_games)
 
@@ -425,7 +505,7 @@ def get_standings(number_from_website):
 	"""
 	return render_template("Dashboard.html", week_num=week, display_num=week_number, score_dict=current_week_score_dict, places=places,
 	previous_score_dict=previous_week_score_dict, previous_places=previous_places, team_data_dict=team_data_dict,
-	player_teams_final=player_teams_final, upcoming_team_games=upcoming_team_games)
+	player_teams_final=player_teams_final, upcoming_team_games=upcoming_team_games, league_number=league_number)
 
 if __name__ == "__main__":
 	app.run(debug=True)

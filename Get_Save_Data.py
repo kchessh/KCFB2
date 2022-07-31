@@ -7,6 +7,7 @@ import pandas
 import time
 import datetime
 from collections import OrderedDict
+import os, os.path
 
 app = Flask(__name__)
 
@@ -126,7 +127,7 @@ with open("Teams.txt") as file:
 
 teams_dict = {team: [] for team in teams}
 
-def upcoming_games():
+def upcoming_games_master():
 	test = True
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
@@ -138,27 +139,10 @@ def upcoming_games():
 		day_of_week = datetime.date.weekday(var)
 		week = determine_week_number() + 1
 
-	data = pandas.read_csv("League1.csv")
-	players_teams_initial = data.to_dict()
-	players_teams = convert_dict_to_simple_dict(players_teams_initial)
-	print(players_teams)
-
 	if day_of_week == 1:
 		for team in teams_dict:
 			game = get_game_data(year, week, team.replace("&", "%26"))
 			i = 0
-			sort_points = 0
-			first_team = False
-			second_team = False
-			home_team = game[i]["home_team"]
-			away_team = game[i]["away_team"]
-			for player_teams in players_teams:
-				if home_team in players_teams[player_teams] and not first_team:
-					sort_points += 1
-					first_team = True
-				if away_team in players_teams[player_teams] and not second_team:
-					sort_points += 1
-					second_team = True
 
 			try:
 				if game[i]["home_team"] == team:
@@ -168,30 +152,56 @@ def upcoming_games():
 					date = datetime.date(start_day_as_input[0], start_day_as_input[1], start_day_as_input[2])
 					start_day_as_output = datetime.date.weekday(date)
 					start_day = weekDays[start_day_as_output]
-					games[team] = {"opponent": game[i]["away_team"], "start_day": start_day, "sort_points": sort_points}
+					games[team] = {"opponent": game[i]["away_team"], "start_day": start_day}
 				else:
-					print(game[i]["away_team"])
 					home_team = game[i]["home_team"]
 					start_date = game[i]["start_date"].split("T")[0].split("-")
 					start_day_as_input = [int(item) for item in start_date]
 					date = datetime.date(start_day_as_input[0], start_day_as_input[1], start_day_as_input[2])
 					start_day_as_output = datetime.date.weekday(date)
 					start_day = weekDays[start_day_as_output]
-					games[home_team] = {"opponent": team, "start_day": start_day, "sort_points": sort_points}
+					games[home_team] = {"opponent": team, "start_day": start_day}
 			except KeyError:
 				pass
 			i += 1
 
-		games = dict(sorted(games.items(), key=lambda kv: kv[1]["sort_points"], reverse=True))
 		write_data = pandas.DataFrame(games, index=["opponent", "start_day", "sort_points"])
 		write_data.to_csv(f"This_weeks_games.csv")
-		return games
 
-games = upcoming_games()
+		number_of_leagues = len([name for name in os.listdir('Leagues')])
+		league = 1
+
+		while league <= number_of_leagues:
+			data = pandas.read_csv(f"Leagues/League{league}.csv", encoding='latin-1')
+			league_games = games
+			players_teams_initial = data.to_dict()
+			players_teams = convert_dict_to_simple_dict(players_teams_initial)
+			print(players_teams)
+			print(games)
+			for team in league_games:
+				print(team)
+				print(f"opponent: {league_games[team]['opponent']}")
+				sort_points = 0
+				for player in players_teams:
+					if team in players_teams[player]:
+						print("sort points up by 1")
+						sort_points += 1
+					if league_games[team]["opponent"] in players_teams[player]:
+						print("sort points up by 1")
+						sort_points += 1
+					if sort_points == 2:
+						break
+				league_games[team]["sort_points"] = sort_points
+
+			league_games = dict(sorted(league_games.items(), key=lambda kv: kv[1]["sort_points"], reverse=True))
+			write_data = pandas.DataFrame(league_games, index=["opponent", "start_day", "sort_points"])
+			write_data.to_csv(f"This_Weeks_Games/League{league}.csv")
+			league += 1
+
+upcoming_games_master()
 data = pandas.read_csv("This_weeks_games.csv")
 team_games = data.to_dict()
 final_team_games = convert_dict_to_simple_dict(team_games)
-print(final_team_games)
 
 """
 This function saves a csv with a dictionary where the key is the team and the value is a list of 0s and 1s to represent
