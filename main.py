@@ -30,7 +30,7 @@ def determine_week_number():
 	var = datetime.datetime.now()
 	day = var.day
 	# month = var.month
-	month = 11
+	month = 12
 
 	cutoffs = [[9, 5], [9, 10], [9, 17], [9, 24], [10, 1], [10, 8], [10, 15], [10, 22], [10, 29], [11, 5], [11, 12],
 			   [11, 19], [11, 26], [12, 3], [12, 10], [12, 17]]
