@@ -33,7 +33,7 @@ def determine_week_number():
 	month = 12
 
 	cutoffs = [[9, 5], [9, 10], [9, 17], [9, 24], [10, 1], [10, 8], [10, 15], [10, 22], [10, 29], [11, 5], [11, 12],
-			   [11, 19], [11, 26], [12, 3], [12, 10], [12, 17]]
+			   [11, 19], [11, 26], [12, 3]]
 	list = []
 	second_list = []
 
@@ -49,8 +49,8 @@ def determine_week_number():
 		week = 1
 	else:
 		week = len(second_list) + 1
-		if week > 15:
-			week = 15
+		if week > 14:
+			week = 14
 	return week
 
 """
