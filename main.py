@@ -16,7 +16,7 @@ week_choices = {number:str(number) for number in range(1, 16)}
 "get_data should be set to true to request data from the CFB API"
 get_data = False
 ""
-get_upcoming_games = False
+get_upcoming_games = True
 
 """
 This function is used to determine which week number it is in the season. It will look through the cutoffs (dates) and
@@ -28,7 +28,7 @@ def determine_week_number():
 	month = var.month
 	# month = 12
 
-	cutoffs = [[9, 12], [9, 18], [9, 25], [10, 2], [10, 9], [10, 16], [10, 23], [10, 30], [11, 6], [11, 13],
+	cutoffs = [[9, 11], [9, 18], [9, 25], [10, 2], [10, 9], [10, 16], [10, 23], [10, 30], [11, 6], [11, 13],
 			   [11, 20], [11, 27], [12, 4]]
 	list = []
 	second_list = []
@@ -141,6 +141,8 @@ def upcoming_games_master():
 		for team in teams_dict:
 			game = get_game_data(year, week, team.replace("&", "%26"))
 			i = 0
+			print(game)
+			print(i)
 
 			try:
 				if game[i]["home_team"] == team:
@@ -160,6 +162,8 @@ def upcoming_games_master():
 					start_day = weekDays[start_day_as_output]
 					games[home_team] = {"opponent": team, "start_day": start_day}
 			except KeyError:
+				pass
+			except IndexError:
 				pass
 			i += 1
 
