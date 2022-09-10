@@ -141,12 +141,9 @@ def upcoming_games_master():
 		for team in teams_dict:
 			game = get_game_data(year, week, team.replace("&", "%26"))
 			i = 0
-			print(game)
-			print(i)
 
 			try:
 				if game[i]["home_team"] == team:
-					print(game[i]["home_team"])
 					start_date = game[i]["start_date"].split("T")[0].split("-")
 					start_day_as_input = [int(item) for item in start_date]
 					date = datetime.date(start_day_as_input[0], start_day_as_input[1], start_day_as_input[2])
@@ -178,18 +175,13 @@ def upcoming_games_master():
 			league_games = games
 			players_teams_initial = data.to_dict()
 			players_teams = convert_dict_to_simple_dict(players_teams_initial)
-			print(players_teams)
-			print(games)
 			for team in league_games:
-				print(team)
-				print(f"opponent: {league_games[team]['opponent']}")
+				# print(f"opponent: {league_games[team]['opponent']}")
 				sort_points = 0
 				for player in players_teams:
 					if team in players_teams[player]:
-						print("sort points up by 1")
 						sort_points += 1
 					if league_games[team]["opponent"] in players_teams[player]:
-						print("sort points up by 1")
 						sort_points += 1
 					if sort_points == 2:
 						break
@@ -293,7 +285,6 @@ def display(league_number):
 
 	"Determine current week and previous week to calculate standings and previous standings"
 	week = determine_week_number()
-	print(week)
 	if week == 1:
 		previous_week = 1
 	else:
@@ -310,14 +301,11 @@ def display(league_number):
 	current_week_points_dict = {}
 	previous_week_points_dict = {}
 	team_score_dict = {}
-	print(teams)
 
 	for team in teams:
 		i = 0
 		points = 0
-		print(team)
 		while i < week:
-			print(i)
 			points += points_dict[team][i]
 			i += 1
 
