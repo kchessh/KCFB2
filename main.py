@@ -16,7 +16,7 @@ week_choices = {number:str(number) for number in range(1, 16)}
 "get_data should be set to true to request data from the CFB API"
 get_data = False
 ""
-get_upcoming_games = True
+get_upcoming_games = False
 
 """
 This function is used to determine which week number it is in the season. It will look through the cutoffs (dates) and
