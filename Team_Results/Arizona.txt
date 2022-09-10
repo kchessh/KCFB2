@@ -1,1 +1,1 @@
-L BYU,L San Diego State,L Northern Arizona,L Oregon,L UCLA,L Colorado,L Washington,L USC,W California,L Utah,L Washington State,L Arizona State,
+L BYU,L San Diego State,L Northern Arizona,L Oregon,L UCLA,L Colorado,L Washington,L USC,W California,L Utah,L Washington State,L Arizona State,W San Diego State,

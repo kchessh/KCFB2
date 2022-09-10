@@ -1,4 +1,4 @@
-year = 2021
+year = 2022
 weeks = [num for num in range(1, 15)]
 
 from flask import Flask, render_template
@@ -15,11 +15,7 @@ week_choices = {number:str(number) for number in range(1, 16)}
 
 "get_data should be set to true to request data from the CFB API"
 get_data = False
-
 ""
-old_scores = False
-new_scores = True
-
 get_upcoming_games = False
 
 """
@@ -29,11 +25,11 @@ compare it to the datetime's current date. It's used to set the default week num
 def determine_week_number():
 	var = datetime.datetime.now()
 	day = var.day
-	# month = var.month
-	month = 12
+	month = var.month
+	# month = 12
 
-	cutoffs = [[9, 5], [9, 10], [9, 17], [9, 24], [10, 1], [10, 8], [10, 15], [10, 22], [10, 29], [11, 5], [11, 12],
-			   [11, 19], [11, 26], [12, 3]]
+	cutoffs = [[9, 12], [9, 18], [9, 25], [10, 2], [10, 9], [10, 16], [10, 23], [10, 30], [11, 6], [11, 13],
+			   [11, 20], [11, 27], [12, 4]]
 	list = []
 	second_list = []
 
@@ -134,7 +130,7 @@ def upcoming_games_master():
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	if test:
-		week = 1
+		week = 2
 		day_of_week = 1
 	else:
 		var = datetime.datetime.now()
@@ -217,7 +213,7 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 6
+	week = 1
 	for team in new_teams:
 		time.sleep(0.2)
 		week_data = get_game_data(year, week, team)
@@ -293,6 +289,7 @@ def display(league_number):
 
 	"Determine current week and previous week to calculate standings and previous standings"
 	week = determine_week_number()
+	print(week)
 	if week == 1:
 		previous_week = 1
 	else:
@@ -309,11 +306,14 @@ def display(league_number):
 	current_week_points_dict = {}
 	previous_week_points_dict = {}
 	team_score_dict = {}
+	print(teams)
 
 	for team in teams:
 		i = 0
 		points = 0
+		print(team)
 		while i < week:
+			print(i)
 			points += points_dict[team][i]
 			i += 1
 
