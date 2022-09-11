@@ -28,7 +28,7 @@ def determine_week_number():
 	month = var.month
 	# month = 12
 
-	cutoffs = [[9, 12], [9, 18], [9, 25], [10, 2], [10, 9], [10, 16], [10, 23], [10, 30], [11, 6], [11, 13],
+	cutoffs = [[9, 11], [9, 18], [9, 25], [10, 2], [10, 9], [10, 16], [10, 23], [10, 30], [11, 6], [11, 13],
 			   [11, 20], [11, 27], [12, 4]]
 	list = []
 	second_list = []
@@ -130,7 +130,7 @@ def upcoming_games_master():
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	if test:
-		week = 2
+		week = 3
 		day_of_week = 1
 	else:
 		var = datetime.datetime.now()
@@ -139,6 +139,7 @@ def upcoming_games_master():
 
 	if day_of_week == 1:
 		for team in teams_dict:
+			print(team)
 			game = get_game_data(year, week, team.replace("&", "%26"))
 			i = 0
 
@@ -209,14 +210,16 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 1
+	week = 2
 	for team in new_teams:
+		print(team)
 		time.sleep(0.2)
 		week_data = get_game_data(year, week, team)
 		i = 0
 		score = 0
 		while i < len(week_data):
 			game = week_data[i]
+			print(game)
 
 			home_team = game["home_team"]
 			home_score = game["home_points"]
@@ -265,7 +268,7 @@ def save_data(league_number):
 
 
 	write_data = pandas.DataFrame(teams_dict)
-	write_data.to_csv(f"Team_points.csv")
+	write_data.to_csv(f"Team_points.csv", mode='a')
 
 if get_data:
 	save_data(league_number=1)
@@ -302,12 +305,9 @@ def display(league_number):
 	previous_week_points_dict = {}
 	team_score_dict = {}
 
-	print(teams)
 	for team in teams:
 		i = 0
 		points = 0
-		print(team)
-		print(points_dict[team])
 		while i < week:
 			points += points_dict[team][i]
 			i += 1
