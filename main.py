@@ -307,6 +307,7 @@ def display(league_number):
 		i = 0
 		points = 0
 		print(team)
+		print(points_dict[team])
 		while i < week:
 			points += points_dict[team][i]
 			i += 1
