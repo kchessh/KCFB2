@@ -302,9 +302,11 @@ def display(league_number):
 	previous_week_points_dict = {}
 	team_score_dict = {}
 
+	print(teams)
 	for team in teams:
 		i = 0
 		points = 0
+		print(team)
 		while i < week:
 			points += points_dict[team][i]
 			i += 1
