@@ -1,1 +1,1 @@
-W Missouri State,W Tulsa,W Boise State,W Kansas State,W Baylor,W Texas,L Iowa State,W Kansas,W West Virginia,W TCU,W Texas Tech,W Oklahoma,L Baylor,W Central Michigan,W Arizona State,W Central Michigan,W Arizona State,
+W Missouri State,W Tulsa,W Boise State,W Kansas State,W Baylor,W Texas,L Iowa State,W Kansas,W West Virginia,W TCU,W Texas Tech,W Oklahoma,L Baylor,W Central Michigan,W Arizona State,W Central Michigan,W Arizona State,W Arkansas-Pine Bluff,
