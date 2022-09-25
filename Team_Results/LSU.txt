@@ -1,1 +1,1 @@
-L UCLA,W McNeese,W Central Michigan,W Mississippi State,L Auburn,L Kentucky,W Florida,L Ole Miss,L Alabama,L Arkansas,W Louisiana Monroe,W Texas A&M,L Florida State,W Southern,L Florida State,W Southern,W Mississippi State,
+L UCLA,W McNeese,W Central Michigan,W Mississippi State,L Auburn,L Kentucky,W Florida,L Ole Miss,L Alabama,L Arkansas,W Louisiana Monroe,W Texas A&M,L Florida State,W Southern,L Florida State,W Southern,W Mississippi State,W New Mexico,

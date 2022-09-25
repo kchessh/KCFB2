@@ -1,1 +1,1 @@
-L East Tennessee State,W Colorado State,L Stanford,L Georgia,W Connecticut,L Florida,L South Carolina,L Mississippi State,L Missouri,L Kentucky,L Ole Miss,L Tennessee,W Hawai'i,W Elon,W Hawai'i,W Elon,L Wake Forest,W Hawai'i,W Elon,W Hawai'i,W Elon,L Wake Forest,W Northern Illinois,
+L East Tennessee State,W Colorado State,L Stanford,L Georgia,W Connecticut,L Florida,L South Carolina,L Mississippi State,L Missouri,L Kentucky,L Ole Miss,L Tennessee,W Hawai'i,W Elon,W Hawai'i,W Elon,L Wake Forest,W Hawai'i,W Elon,W Hawai'i,W Elon,L Wake Forest,W Northern Illinois,L Alabama,

@@ -130,7 +130,7 @@ def upcoming_games_master():
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	if test:
-		week = 4
+		week = 5
 		day_of_week = 1
 	else:
 		var = datetime.datetime.now()
@@ -210,7 +210,7 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 3
+	week = 4
 	for team in new_teams:
 		print(team)
 		time.sleep(0.2)
