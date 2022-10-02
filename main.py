@@ -130,7 +130,7 @@ def upcoming_games_master():
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	if test:
-		week = 5
+		week = 6
 		day_of_week = 1
 	else:
 		var = datetime.datetime.now()
@@ -210,7 +210,7 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 4
+	week = 5
 	for team in new_teams:
 		print(team)
 		time.sleep(0.2)
@@ -226,42 +226,46 @@ def save_data(league_number):
 			away_team = game["away_team"]
 			away_score = game["away_points"]
 
-			if home_score > away_score:
-				winner = home_team
-				loser = away_team
-			else:
-				winner = away_team
-				loser = home_team
+			try:
+				if home_score > away_score:
+					winner = home_team
+					loser = away_team
+				else:
+					winner = away_team
+					loser = home_team
 
-			if winner == team.replace("%26", "&"):
-				score += 1
-				try:
-					with open(f"Team_Results/{team}.txt", 'r', encoding='ISO-8859-1') as file:
-						text = file.read()
-						results = text.split(",")
-				except FileNotFoundError:
-					results = []
-				with open(f"Team_Results/{team}.txt", 'a+', encoding='ISO-8859-1') as file:
-					if len(results) == 0:
-						file.write(f"W {loser.replace('%26', '&')},")
-					else:
-						most_recent_result = results[-2]
-						if most_recent_result != f"W {loser.replace('%26', '&')}":
+				if winner == team.replace("%26", "&"):
+					score += 1
+					try:
+						with open(f"Team_Results/{team}.txt", 'r', encoding='ISO-8859-1') as file:
+							text = file.read()
+							results = text.split(",")
+					except FileNotFoundError:
+						results = []
+					with open(f"Team_Results/{team}.txt", 'a+', encoding='ISO-8859-1') as file:
+						if len(results) == 0:
 							file.write(f"W {loser.replace('%26', '&')},")
-			else:
-				try:
-					with open(f"Team_Results/{team}.txt", 'r', encoding='ISO-8859-1') as file:
-						text = file.read()
-						results = text.split(",")
-				except FileNotFoundError:
-					results = []
-				with open(f"Team_Results/{team}.txt", 'a+', encoding='ISO-8859-1') as file:
-					if len(results) == 0:
-						file.write(f"L {winner.replace('%26', '&')},")
-					else:
-						most_recent_result = results[-2]
-						if most_recent_result != f"L {winner.replace('%26', '&')}":
+						else:
+							most_recent_result = results[-2]
+							if most_recent_result != f"W {loser.replace('%26', '&')}":
+								file.write(f"W {loser.replace('%26', '&')},")
+				else:
+					try:
+						with open(f"Team_Results/{team}.txt", 'r', encoding='ISO-8859-1') as file:
+							text = file.read()
+							results = text.split(",")
+					except FileNotFoundError:
+						results = []
+					with open(f"Team_Results/{team}.txt", 'a+', encoding='ISO-8859-1') as file:
+						if len(results) == 0:
 							file.write(f"L {winner.replace('%26', '&')},")
+						else:
+							most_recent_result = results[-2]
+							if most_recent_result != f"L {winner.replace('%26', '&')}":
+								file.write(f"L {winner.replace('%26', '&')},")
+
+			except TypeError:
+				pass
 
 			i += 1
 		teams_dict[team.replace("%26", "&")].append(score)

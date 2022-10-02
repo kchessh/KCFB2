@@ -1,1 +1,1 @@
-W Akron,W Alabama State,L Penn State,W Georgia State,W LSU,L Georgia,W Arkansas,W Ole Miss,L Texas A&M,L Mississippi State,L South Carolina,L Alabama,W Mercer,W San José State,W Mercer,W San José State,L Penn State,W Missouri,
+W Akron,W Alabama State,L Penn State,W Georgia State,W LSU,L Georgia,W Arkansas,W Ole Miss,L Texas A&M,L Mississippi State,L South Carolina,L Alabama,W Mercer,W San José State,W Mercer,W San José State,L Penn State,W Missouri,L LSU,

@@ -1,1 +1,1 @@
-W Northern Iowa,L Iowa,W UNLV,L Baylor,W Kansas,W Kansas State,W Oklahoma State,L West Virginia,W Texas,L Texas Tech,L Oklahoma,W TCU,W Southeast Missouri State,W Iowa,W Southeast Missouri State,W Iowa,W Ohio,L Baylor,
+W Northern Iowa,L Iowa,W UNLV,L Baylor,W Kansas,W Kansas State,W Oklahoma State,L West Virginia,W Texas,L Texas Tech,L Oklahoma,W TCU,W Southeast Missouri State,W Iowa,W Southeast Missouri State,W Iowa,W Ohio,L Baylor,L Kansas,
