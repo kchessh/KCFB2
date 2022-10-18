@@ -1,1 +1,1 @@
-W Wisconsin,W Ball State,W Auburn,W Villanova,W Indiana,L Iowa,L Illinois,L Ohio State,W Maryland,L Michigan,W Rutgers,L Michigan State,W Purdue,W Ohio,W Purdue,W Ohio,W Auburn,W Central Michigan,W Northwestern,
+W Wisconsin,W Ball State,W Auburn,W Villanova,W Indiana,L Iowa,L Illinois,L Ohio State,W Maryland,L Michigan,W Rutgers,L Michigan State,W Purdue,W Ohio,W Purdue,W Ohio,W Auburn,W Central Michigan,W Northwestern,L Michigan,

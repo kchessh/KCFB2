@@ -1,1 +1,1 @@
-L Purdue,W Hawai'i,W Idaho,W USC,W Washington,L Washington State,W Utah,L California,L Colorado,W Stanford,W Arizona State,L Oregon,W Boise State,W Fresno State,W Boise State,W Fresno State,W Montana State,L USC,L Utah,W Stanford,
+L Purdue,W Hawai'i,W Idaho,W USC,W Washington,L Washington State,W Utah,L California,L Colorado,W Stanford,W Arizona State,L Oregon,W Boise State,W Fresno State,W Boise State,W Fresno State,W Montana State,L USC,L Utah,W Stanford,W Washington State,

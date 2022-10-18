@@ -1,1 +1,1 @@
-W Rice,W Texas,W Georgia Southern,W Texas A&M,L Georgia,L Ole Miss,L Auburn,W Arkansas-Pine Bluff,W Mississippi State,W LSU,L Alabama,W Missouri,W Cincinnati,W South Carolina,W Cincinnati,W South Carolina,W Missouri State,L Texas A&M,L Alabama,L Mississippi State,
+W Rice,W Texas,W Georgia Southern,W Texas A&M,L Georgia,L Ole Miss,L Auburn,W Arkansas-Pine Bluff,W Mississippi State,W LSU,L Alabama,W Missouri,W Cincinnati,W South Carolina,W Cincinnati,W South Carolina,W Missouri State,L Texas A&M,L Alabama,L Mississippi State,W BYU,
