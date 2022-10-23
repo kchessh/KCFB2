@@ -1,1 +1,1 @@
-W Indiana,W Iowa State,W Kent State,W Colorado State,W Maryland,W Penn State,L Purdue,L Wisconsin,W Northwestern,W Minnesota,W Illinois,W Nebraska,L Michigan,W South Dakota State,L Iowa State,W South Dakota State,L Iowa State,W Nevada,W Rutgers,L Michigan,L Illinois,
+W Indiana,W Iowa State,W Kent State,W Colorado State,W Maryland,W Penn State,L Purdue,L Wisconsin,W Northwestern,W Minnesota,W Illinois,W Nebraska,L Michigan,W South Dakota State,L Iowa State,W South Dakota State,L Iowa State,W Nevada,W Rutgers,L Michigan,L Illinois,L Ohio State,

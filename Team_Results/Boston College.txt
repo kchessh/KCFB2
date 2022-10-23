@@ -1,1 +1,1 @@
-W Colgate,W UMass,W Temple,W Missouri,L Clemson,L NC State,L Louisville,L Syracuse,W Virginia Tech,W Georgia Tech,L Florida State,L Wake Forest,L Rutgers,L Virginia Tech,L Rutgers,L Virginia Tech,W Maine,L Florida State,W Louisville,L Clemson,
+W Colgate,W UMass,W Temple,W Missouri,L Clemson,L NC State,L Louisville,L Syracuse,W Virginia Tech,W Georgia Tech,L Florida State,L Wake Forest,L Rutgers,L Virginia Tech,L Rutgers,L Virginia Tech,W Maine,L Florida State,W Louisville,L Clemson,L Wake Forest,
