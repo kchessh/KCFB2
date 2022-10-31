@@ -1,1 +1,1 @@
-W Texas State,W Texas Southern,W Kansas,W Iowa State,L Oklahoma State,W West Virginia,W BYU,W Texas,L TCU,W Oklahoma,W Kansas State,W Texas Tech,W Oklahoma State,W Albany,L BYU,W Albany,L BYU,W Texas State,W Iowa State,L Oklahoma State,L West Virginia,W Kansas,
+W Texas State,W Texas Southern,W Kansas,W Iowa State,L Oklahoma State,W West Virginia,W BYU,W Texas,L TCU,W Oklahoma,W Kansas State,W Texas Tech,W Oklahoma State,W Albany,L BYU,W Albany,L BYU,W Texas State,W Iowa State,L Oklahoma State,L West Virginia,W Kansas,W Texas Tech,

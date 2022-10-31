@@ -10,7 +10,7 @@ response = requests.get(f"https://www.sportsbettingdime.com/college-football/win
 text = response.text
 soup = BeautifulSoup(text, "html.parser")
 
-song_list = []
+'teams_raw uses the class "table-responsive" to get the data'
 teams_raw = str(soup.select(selector=".table-responsive"))
 
 teams = re.findall('(?:<td>)([\w\s\&\;-]*)(?:<\/td>)', teams_raw)
