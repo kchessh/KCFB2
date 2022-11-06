@@ -1,1 +1,1 @@
-W Stanford,W Southern Illinois,W Nevada,L Oklahoma State,L Oklahoma,L Iowa State,W Texas Tech,W TCU,W Kansas,W West Virginia,L Baylor,L Texas,W South Dakota,W Missouri,W South Dakota,W Missouri,L Tulane,W Oklahoma,W Texas Tech,W Iowa State,L TCU,W Oklahoma State,
+W Stanford,W Southern Illinois,W Nevada,L Oklahoma State,L Oklahoma,L Iowa State,W Texas Tech,W TCU,W Kansas,W West Virginia,L Baylor,L Texas,W South Dakota,W Missouri,W South Dakota,W Missouri,L Tulane,W Oklahoma,W Texas Tech,W Iowa State,L TCU,W Oklahoma State,L Texas,

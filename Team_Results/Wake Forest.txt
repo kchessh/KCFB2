@@ -1,1 +1,1 @@
-W Old Dominion,W Norfolk State,W Florida State,W Virginia,W Louisville,W Syracuse,W Army,W Duke,L North Carolina,W NC State,L Clemson,W Boston College,L Pittsburgh,W VMI,W Vanderbilt,W VMI,W Vanderbilt,W Liberty,L Clemson,W Florida State,W Army,W Boston College,L Louisville,
+W Old Dominion,W Norfolk State,W Florida State,W Virginia,W Louisville,W Syracuse,W Army,W Duke,L North Carolina,W NC State,L Clemson,W Boston College,L Pittsburgh,W VMI,W Vanderbilt,W VMI,W Vanderbilt,W Liberty,L Clemson,W Florida State,W Army,W Boston College,L Louisville,L NC State,
