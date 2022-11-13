@@ -1,1 +1,1 @@
-L Maryland,W Long Island University,W Virginia Tech,L Oklahoma,L Texas Tech,L Baylor,W TCU,W Iowa State,L Oklahoma State,L Kansas State,W Texas,W Kansas,L Pittsburgh,L Kansas,L Pittsburgh,L Kansas,W Towson,W Virginia Tech,L Texas,W Baylor,L Texas Tech,L TCU,L Iowa State,
+L Maryland,W Long Island University,W Virginia Tech,L Oklahoma,L Texas Tech,L Baylor,W TCU,W Iowa State,L Oklahoma State,L Kansas State,W Texas,W Kansas,L Pittsburgh,L Kansas,L Pittsburgh,L Kansas,W Towson,W Virginia Tech,L Texas,W Baylor,L Texas Tech,L TCU,L Iowa State,W Oklahoma,

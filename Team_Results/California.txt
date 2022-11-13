@@ -1,1 +1,1 @@
-L Nevada,L TCU,W Sacramento State,L Washington,L Washington State,L Oregon,W Colorado,W Oregon State,L Arizona,W Stanford,L UCLA,W USC,W UC Davis,W UNLV,W UC Davis,W UNLV,L Notre Dame,W Arizona,L Washington State,L Colorado,L Washington,L Oregon,L USC,
+L Nevada,L TCU,W Sacramento State,L Washington,L Washington State,L Oregon,W Colorado,W Oregon State,L Arizona,W Stanford,L UCLA,W USC,W UC Davis,W UNLV,W UC Davis,W UNLV,L Notre Dame,W Arizona,L Washington State,L Colorado,L Washington,L Oregon,L USC,L Oregon State,
