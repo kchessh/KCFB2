@@ -1,1 +1,1 @@
-W Florida Atlantic,W South Florida,L Alabama,W Tennessee,L Kentucky,W Vanderbilt,L LSU,L Georgia,L South Carolina,W Samford,L Missouri,W Florida State,W Utah,L Kentucky,W Utah,L Kentucky,W South Florida,L Tennessee,W Missouri,L LSU,L Georgia,W Texas A&M,W South Carolina,
+W Florida Atlantic,W South Florida,L Alabama,W Tennessee,L Kentucky,W Vanderbilt,L LSU,L Georgia,L South Carolina,W Samford,L Missouri,W Florida State,W Utah,L Kentucky,W Utah,L Kentucky,W South Florida,L Tennessee,W Missouri,L LSU,L Georgia,W Texas A&M,W South Carolina,L Vanderbilt,

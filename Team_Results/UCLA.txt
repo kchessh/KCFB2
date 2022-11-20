@@ -1,1 +1,1 @@
-W Hawai'i,W LSU,L Fresno State,W Stanford,L Arizona State,W Arizona,W Washington,L Oregon,L Utah,W Colorado,W USC,W California,W Bowling Green,W Alabama State,W Bowling Green,W Alabama State,W South Alabama,W Colorado,W Washington,W Utah,L Oregon,W Stanford,W Arizona State,L Arizona,
+W Hawai'i,W LSU,L Fresno State,W Stanford,L Arizona State,W Arizona,W Washington,L Oregon,L Utah,W Colorado,W USC,W California,W Bowling Green,W Alabama State,W Bowling Green,W Alabama State,W South Alabama,W Colorado,W Washington,W Utah,L Oregon,W Stanford,W Arizona State,L Arizona,L USC,
