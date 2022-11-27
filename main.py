@@ -1,6 +1,3 @@
-year = 2022
-weeks = [num for num in range(1, 15)]
-
 from flask import Flask, render_template
 import requests
 import pandas
@@ -11,6 +8,8 @@ import os, os.path
 
 app = Flask(__name__)
 
+year = 2022
+weeks = [num for num in range(1, 15)]
 week_choices = {number:str(number) for number in range(1, 16)}
 
 "get_data should be set to true to request data from the CFB API"
@@ -130,7 +129,7 @@ def upcoming_games_master():
 	games = {}
 	weekDays = ("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday")
 	if test:
-		week = 13
+		week = 14
 		day_of_week = 1
 	else:
 		var = datetime.datetime.now()
@@ -210,7 +209,7 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 12
+	week = 13
 	for team in new_teams:
 		print(team)
 		time.sleep(0.2)
