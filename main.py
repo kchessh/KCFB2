@@ -209,7 +209,7 @@ def save_data(league_number):
 	data = pandas.read_csv(f"Leagues/League{league_number}.csv", encoding='latin-1')
 	initial_dict = data.to_dict()
 	player_teams = convert_dict_to_simple_dict(initial_dict)
-	week = 13
+	week = 14
 	for team in new_teams:
 		print(team)
 		time.sleep(0.2)
