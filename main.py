@@ -11,7 +11,6 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, current_user, logout_user
 import pymysql
 from flask_migrate import Migrate
-import no_push
 pymysql.install_as_MySQLdb()
 
 test = True
@@ -23,6 +22,7 @@ app.config['SECRET_KEY'] = 'secret-key-goes-here'
 # New
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://username:password@localhost/db_name'
 if test:
+    import no_push
     app.config['SQLALCHEMY_DATABASE_URI'] = no_push.my_sql_config
 # Heroku SQL
 else:
