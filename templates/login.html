@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block content %}
+<div class="shadow-lg p-3 mb-5 bg-white rounded">
+
+	<form method="POST">
+		{{ form.hidden_tag() }}
+
+		{{ form.email.label(class="form-label") }}
+
+		{{ form.email(class="form-control") }}
+		<br/>
+
+		{{ form.password.label(class="form-label") }}
+
+		{{ form.password(class="form-control") }}
+		<br/>
+
+		{{ form.submit(class="btn btn-secondary") }}
+
+	</form>
+
+</div>
+{% endblock %}
