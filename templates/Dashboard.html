@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+
+{% if current_user.is_authenticated %}
+
 <h2>Dashboard</h2>
 <br/><br/>
 <p>You are Logged In!</p>
@@ -13,6 +16,7 @@
 <strong>Email: </strong>{{ current_user.email }}<br/>
 <strong>Date Joined: </strong>{{ current_user.date_added }}<br/>
 <strong>Hashed Password: </strong>{{ current_user.password_hash }}<br/>
+<strong>Date Joined: </strong>{{ current_user.date_added }}<br/>
 
 <head>
   <meta charset="utf-8">
